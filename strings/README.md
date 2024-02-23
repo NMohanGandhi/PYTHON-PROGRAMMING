@@ -30,6 +30,7 @@ engine_number = calculate_engine_number(s)
 print(engine_number) 
 ```
 </details>
+
 # Task2
 
 Rahul is given a task to manipulate a string, He hired you as a developer your task is to delete all the repeating characters and print the result left.
@@ -58,3 +59,4 @@ for i in s:
 final = ''.join(i for i,j in count.items() if j <= 1)
 print(final)
 ```
+</details>
