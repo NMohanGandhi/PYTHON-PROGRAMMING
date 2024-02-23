@@ -14,9 +14,10 @@
 # Sample Output :
 ## 28
 
-### 
 <details>
-#<summary> Click to view solution</summary>
+<summary>Click to view solution</summary>
+python
+Copy code
 def calculate_engine_number(s):
     engine_number = 0
     for char in s:
@@ -24,12 +25,12 @@ def calculate_engine_number(s):
             engine_number += int(char)
     return engine_number
 
-#Sample Input
+# Sample Input
 s = "HR05-AA-2669"
 
-#Calculate engine number
+# Calculate engine number
 engine_number = calculate_engine_number(s)
 
-#Output engine number
+# Output engine number
 print(engine_number)
 </details>
