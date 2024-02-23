@@ -15,7 +15,7 @@ HR05-AA-2669
 28
 
 <details>
-<summary>Click to view solution</summary>
+<summary style="color: red;">solution</summary>
 
 ```python
 def calculate_engine_number(s):
