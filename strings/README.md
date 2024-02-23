@@ -14,6 +14,7 @@ HR05-AA-2669
 **Sample Output :**  
 28
 
+<summary>&#x1f534; solution</summary>
 ```python
 def calculate_engine_number(s):
     engine_number = 0
@@ -55,4 +56,20 @@ for i in s:
 final = ''.join(i for i,j in count.items() if j <= 1)
 print(final)
 ```
+**Method-2**
+'''python
+s = input()
+
+unique_chars = []
+seen_chars = set()
+
+for char in s:
+    if char not in seen_chars:
+        unique_chars.append(char)
+        seen_chars.add(char)
+
+final = ''.join(unique_chars)
+print(final)
+```
+
 
