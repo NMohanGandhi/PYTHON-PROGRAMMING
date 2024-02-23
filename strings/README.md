@@ -63,25 +63,3 @@ for i in s:
     
 final = ''.join(i for i,j in count.items() if j <= 1)
 print(final)
-<details>
-<summary>Method-2</summary>
-```python
-s = input()
-
-unique_chars = []
-seen_chars = set()
-
-for char in s:
-    if char not in seen_chars:
-        unique_chars.append(char)
-        seen_chars.add(char)
-
-final = ''.join(unique_chars)
-print(final)
-</summary>
-</details>
-
-</summary>
-</details>
-
-</details>
