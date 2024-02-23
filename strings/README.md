@@ -14,6 +14,21 @@ HR05-AA-2669
 **Sample Output :**  
 28
 
+<details>
+<summary>&#x1f534; solution</summary>
+
+```python
+def calculate_engine_number(s):
+    engine_number = 0
+    for char in s:
+        if char.isdigit():
+            engine_number += int(char)
+    return engine_number
+
+s = "HR05-AA-2669"
+engine_number = calculate_engine_number(s)
+print(engine_number) 
+```
 # Task2
 
 Rahul is given a task to manipulate a string, He hired you as a developer your task is to delete all the repeating characters and print the result left.
@@ -29,9 +44,20 @@ mississipie
 **Sample Output :**
 mpe
 
-<details>
+<details>    
 <summary>&#x1f534; solution</summary>
 
+```python
+s = input()
+
+count = {}
+for i in s:
+    count[i] = s.count(i)
+    
+final = ''.join(i for i,j in count.items() if j <= 1)
+print(final)
+```
+** Method-2**
 ```python
 s = input()
 
@@ -45,5 +71,4 @@ for char in s:
 
 final = ''.join(unique_chars)
 print(final)
-</details>
 ```
