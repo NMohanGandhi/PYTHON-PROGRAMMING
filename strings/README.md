@@ -14,9 +14,6 @@ HR05-AA-2669
 **Sample Output :**  
 28
 
-<details>
-<summary>&#x1f534; solution</summary>
-
 ```python
 def calculate_engine_number(s):
     engine_number = 0
@@ -29,8 +26,6 @@ s = "HR05-AA-2669"
 engine_number = calculate_engine_number(s)
 print(engine_number) 
 ```
-</details>
-
 
 # Task2
 
@@ -47,7 +42,7 @@ mississipie
 **Sample Output :**
 mpe
 
-<details>
+
 <summary>&#x1f534; solution</summary>
 
 ```python
@@ -60,4 +55,4 @@ for i in s:
 final = ''.join(i for i,j in count.items() if j <= 1)
 print(final)
 ```
-</details>
+
