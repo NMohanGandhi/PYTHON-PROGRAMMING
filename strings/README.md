@@ -13,3 +13,23 @@
 ## HR05-AA-2669
 # Sample Output :
 ## 28
+
+### 
+<details>
+# <summary> Click to view solution</summary>
+def calculate_engine_number(s):
+    engine_number = 0
+    for char in s:
+        if char.isdigit():
+            engine_number += int(char)
+    return engine_number
+
+# Sample Input
+s = "HR05-AA-2669"
+
+# Calculate engine number
+engine_number = calculate_engine_number(s)
+
+# Output engine number
+print(engine_number)
+</details>
