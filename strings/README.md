@@ -29,26 +29,31 @@ def calculate_engine_number(s):
 s = "HR05-AA-2669"
 engine_number = calculate_engine_number(s)
 print(engine_number) 
+</summary>
 </details>
+
 </details>
+
 <details>
 <summary><strong>Task2:</strong> Delete Repeating Characters</summary>
+
 Rahul is given a task to manipulate a string. He hired you as a developer, and your task is to delete all the repeating characters and print the remaining string.
 
-Input Description:
+**Input Description:**  
 You are given a string ‘s’
 
-Output Description:
+**Output Description:**  
 Print the remaining string
 
-Sample Input:
+**Sample Input:**  
 mississipie
 
-Sample Output:
+**Sample Output:**  
 mpe
 
 <details>    
 <summary>&#x1f534; Solution</summary>
+
 ```python
 s = input()
 
@@ -58,8 +63,8 @@ for i in s:
     
 final = ''.join(i for i,j in count.items() if j <= 1)
 print(final)
-```
-**Method-2**
+<details>
+<summary>Method-2</summary>
 ```python
 s = input()
 
@@ -73,7 +78,10 @@ for char in s:
 
 final = ''.join(unique_chars)
 print(final)
+</summary>
+</details>
+
+</summary>
+</details>
 
 </details>
-</details>
-```
