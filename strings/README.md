@@ -1,36 +1,26 @@
- # Task1
- ## In XYZ country there is rule that car’s engine no. depends upon car’ number plate. Engine no is sum of all the integers present on car’s Number plate.The issuing authority has hired you in order to provide engine no. to the cars.Your task is to develop an algorithm which takes input as in form of string(Number plate) and gives back
+# Task1
 
-# Engine number.
+In XYZ country, there is a rule that a car’s engine number depends upon the car’s number plate. The engine number is the sum of all the integers present on the car’s number plate. The issuing authority has hired you to provide the engine number to the cars. Your task is to develop an algorithm which takes input in the form of a string (Number plate) and gives back the Engine number.
 
-# Input Description:
-## You are given a string ’s’
+**Input Description:**  
+You are given a string ’s’
 
-# Output Description:
-## Print the engine number
+**Output Description:**  
+Print the engine number
 
-# Sample Input :
-## HR05-AA-2669
-# Sample Output :
-## 28
+**Sample Input :**  
+HR05-AA-2669
 
-<details>
-<summary>Click to view solution</summary>
-python
-Copy code
+**Sample Output :**  
+28
+
+```python
 def calculate_engine_number(s):
     engine_number = 0
     for char in s:
         if char.isdigit():
             engine_number += int(char)
     return engine_number
-
-# Sample Input
 s = "HR05-AA-2669"
-
-# Calculate engine number
 engine_number = calculate_engine_number(s)
-
-# Output engine number
 print(engine_number)
-</details>
