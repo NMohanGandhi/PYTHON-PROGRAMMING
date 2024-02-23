@@ -14,6 +14,9 @@ HR05-AA-2669
 **Sample Output :**  
 28
 
+<details>
+<summary>Click to view solution</summary>
+
 ```python
 def calculate_engine_number(s):
     engine_number = 0
@@ -21,6 +24,7 @@ def calculate_engine_number(s):
         if char.isdigit():
             engine_number += int(char)
     return engine_number
+
 s = "HR05-AA-2669"
 engine_number = calculate_engine_number(s)
 print(engine_number)
