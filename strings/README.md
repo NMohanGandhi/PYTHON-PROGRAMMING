@@ -73,6 +73,7 @@ for char in s:
 
 final = ''.join(unique_chars)
 print(final)
+
+</details>
+</details>
 ```
-</details>
-</details>
