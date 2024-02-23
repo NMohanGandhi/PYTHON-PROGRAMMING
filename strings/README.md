@@ -1,3 +1,9 @@
+**The most commonly used object in any project and in any programming language is String only. Hence we should aware complete information about String data type.**
+
+# What is String?
+**Any sequence of characters within either single quotes or double quotes is considered as a
+String.**
+
 # Task1
 
 In XYZ country, there is a rule that a car’s engine number depends upon the car’s number plate. The engine number is the sum of all the integers present on the car’s number plate. The issuing authority has hired you to provide the engine number to the cars. Your task is to develop an algorithm which takes input in the form of a string (Number plate) and gives back the Engine number.
