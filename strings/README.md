@@ -31,16 +31,16 @@ print(engine_number)
 Rahul is given a task to manipulate a string, He hired you as a developer your task is to delete all the repeating characters and print the result left.
 
 **Input Description:**
-You are given a string ‘s’
+ You are given a string ‘s’
 
 **Output Description:**
-Print the remaining string
+ Print the remaining string
 
 **Sample Input :**
-mississipie
+ mississipie
 **Sample Output :**
-mpe
-
+ mpe
+ 
 ```python
 s = input()
 
