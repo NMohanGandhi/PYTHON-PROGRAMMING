@@ -27,4 +27,33 @@ def calculate_engine_number(s):
 
 s = "HR05-AA-2669"
 engine_number = calculate_engine_number(s)
-print(engine_number)
+print(engine_number) 
+```
+# Task2
+
+Rahul is given a task to manipulate a string, He hired you as a developer your task is to delete all the repeating characters and print the result left.
+
+**Input Description:**
+You are given a string ‘s’
+
+**Output Description:**
+Print the remaining string
+
+**Sample Input :**
+mississipie
+**Sample Output :**
+mpe
+
+<details>
+<summary>&#x1f534; solution</summary>
+
+```python
+s = input()
+
+count = {}
+for i in s:
+    count[i] = s.count(i)
+    
+final = ''.join(i for i,j in count.items() if j <= 1)
+print(final)
+```
