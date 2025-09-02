@@ -1,0 +1,186 @@
+import React, { useState } from "react"; // Import React and useState
+import "bootstrap/dist/css/bootstrap.min.css"; // Bootstrap CSS
+import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Bootstrap JS
+import "bootstrap-icons/font/bootstrap-icons.css"; // Bootstrap icons
+
+export default function App() {
+  // Define task collections
+  const collections = [
+    { id: "school", name: "School", icon: "🎒" },
+    { id: "personal", name: "Personal", icon: "👤" },
+    { id: "design", name: "Design", icon: "🎨" },
+  ];
+
+  // State to track selected collection and tasks
+  const [selected, setSelected] = useState("school");
+  const [tasks, setTasks] = useState({
+    school: { active: [], completed: [] },
+    personal: { active: [], completed: [] }, // will remain empty
+    design: { active: [], completed: [] },   // will remain empty
+  });
+
+  // Add task (only School collection)
+  const addTask = () => {
+    if (selected !== "school") return; // only school allows adding tasks
+    const text = prompt("Enter task title:");
+    if (!text) return;
+    const due = prompt("Enter due date (Today / Tomorrow / etc):") || "No due";
+
+    const newActive = [...tasks.school.active, { id: Date.now(), text, due }];
+    setTasks({
+      school: { active: newActive, completed: tasks.school.completed },
+      personal: tasks.personal,
+      design: tasks.design,
+    });
+  };
+
+  // Toggle task (only School collection)
+  const toggleTask = (taskId, completed) => {
+    if (selected !== "school") return; // only school can toggle tasks
+    let active = tasks.school.active;
+    let completedList = tasks.school.completed;
+
+    if (completed) {
+      // Move from completed to active
+      const task = completedList.find(t => t.id === taskId);
+      completedList = completedList.filter(t => t.id !== taskId);
+      active = [...active, task];
+    } else {
+      // Move from active to completed
+      const task = active.find(t => t.id === taskId);
+      active = active.filter(t => t.id !== taskId);
+      completedList = [...completedList, task];
+    }
+
+    setTasks({
+      school: { active, completed: completedList },
+      personal: tasks.personal,
+      design: tasks.design,
+    });
+  };
+
+  // Get color for due dates
+  const dueColor = (due) => {
+    const d = due.toLowerCase();
+    if (d === "today") return "text-warning";
+    if (d === "tomorrow") return "text-info";
+    if (["monday", "thursday"].includes(d)) return "text-success";
+    if (d === "yesterday") return "text-muted";
+    return "text-secondary";
+  };
+
+  // Render tasks (active or completed)
+  const renderTasks = (list, completed) => {
+    if (!tasks[selected][list].length) return <p className="text-muted">No {list} tasks</p>;
+    return tasks[selected][list].map(task => (
+      <div
+        key={task.id}
+        className="p-3 mb-2 rounded"
+        style={{ background: completed ? "#333" : "#222", wordBreak: "break-word", whiteSpace: "normal" }}
+      >
+        <div className="d-flex align-items-center">
+          {/* Icon to toggle task */}
+          <i
+            className={`bi ${completed ? "bi-check-circle-fill" : "bi-circle"} me-2`}
+            style={{ color: "#ff69b4", fontSize: "1.2rem", cursor: "pointer" }}
+            onClick={() => toggleTask(task.id, completed)}
+          ></i>
+          {/* Task text */}
+          <span style={{ textDecoration: completed ? "line-through" : "none", color: completed ? "#bbb" : "#fff" }}>
+            {task.text}
+          </span>
+        </div>
+        <small className={`${dueColor(task.due)} ms-4`}>{task.due}</small>
+      </div>
+    ));
+  };
+
+  // Main content (tasks + add button)
+  const MainContent = () => {
+    // If not School, show empty page
+    if (selected !== "school") return <div className="col p-4"><p className="text-muted">No tasks here</p></div>;
+
+    return (
+      <div className="col p-4" style={{ minWidth: 0 }}>
+        <h4 className="fw-bold mb-3">{collections.find(c => c.id === selected).name}</h4>
+        <button className="btn mb-4 d-flex align-items-center" style={{ color: "#ff69b4" }} onClick={addTask}>
+          <span style={{ fontSize: "1.2rem" }}>➕</span>
+          <span className="ms-2">Add a task</span>
+        </button>
+
+        <h6 className="mb-3">Tasks – {tasks.school.active.length}</h6>
+        {renderTasks("active", false)}
+
+        <h6 className="mt-4 mb-3">Completed – {tasks.school.completed.length}</h6>
+        {renderTasks("completed", true)}
+      </div>
+    );
+  };
+
+  // Sidebar (desktop/mobile)
+  const Sidebar = ({ isMobile }) => (
+    <div className={isMobile ? "offcanvas offcanvas-start bg-secondary text-light" : "col-md-3 col-lg-2 bg-secondary p-3"} tabIndex={-1} id={isMobile ? "sidebar" : undefined}>
+      {isMobile ? (
+        <>
+          <div className="offcanvas-header">
+            <h5 className="offcanvas-title">Collections</h5>
+            <button type="button" className="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+          </div>
+          <div className="offcanvas-body p-0">
+            <ul className="nav nav-pills flex-column p-3">
+              {collections.map(c => (
+                <li key={c.id} className="nav-item mb-2">
+                  <button className={`nav-link d-flex align-items-center ${selected === c.id ? "active" : "text-light"}`}
+                    onClick={() => setSelected(c.id)} data-bs-dismiss="offcanvas">
+                    <span className="me-2" style={{ fontSize: "1.2rem" }}>{c.icon}</span>
+                    {c.name}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </>
+      ) : (
+        <>
+          <h5 className="fw-bold mb-3">Collections</h5>
+          <ul className="nav nav-pills flex-column">
+            {collections.map(c => (
+              <li key={c.id} className="nav-item mb-2">
+                <button className={`nav-link d-flex align-items-center ${selected === c.id ? "active" : "text-light"}`}
+                  onClick={() => setSelected(c.id)}>
+                  <span className="me-2" style={{ fontSize: "1.2rem" }}>{c.icon}</span>
+                  {c.name}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+    </div>
+  );
+
+  return (
+    <div className="container-fluid bg-dark text-light min-vh-100 p-0 position-relative" style={{ overflowX: 'hidden' }}>
+      {/* Top gradient stripe */}
+      <div style={{ height: "6px", background: "linear-gradient(90deg,#ff69b4,#9b59b6)" }}></div>
+
+      {/* Desktop / Tablet layout */}
+      <div className="d-none d-md-flex row" style={{ minHeight: "100vh" }}>
+        <Sidebar />
+        <MainContent />
+      </div>
+
+      {/* Mobile layout */}
+      <div className="d-flex d-md-none flex-row" style={{ minHeight: "100vh", width: "100%" }}>
+        <button className="btn px-3 d-flex align-items-start" style={{ color: "#ff69b4", background: "transparent", border: "none" }} type="button"
+          data-bs-toggle="offcanvas" data-bs-target="#sidebar">
+          <i className="bi bi-list" style={{ fontSize: "2rem" }}></i>
+        </button>
+        <div className="flex-grow-1 px-3 py-4" style={{ minWidth: 0, width: "100%" }}>
+          <MainContent />
+        </div>
+        <Sidebar isMobile />
+      </div>
+    </div>
+  );
+}
